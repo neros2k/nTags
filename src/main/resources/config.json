@@ -1,0 +1,28 @@
+{
+  "HIDE_TAG_ON_JOIN": true,
+  "ENABLE_CMDS": true,
+  "ENABLE_AB_MSG": true,
+  "SEND_AB_FROM_DSPLD_PLYR": false,
+  "MESSAGES": {
+    "AB_MSG": "",
+    "RELOAD_CMD": "§f§l[§bɴᴛᴀɢs§f§l]§f Plugin was successfully reloaded.",
+    "HIDE_CMD": "§a▪§f %player% tag was successfully hidden.",
+    "SHOW_CMD": "§a▪§f %player% tag was successfully displayed.",
+    "PERM_ERR": "§c▪§f Error. Not enough permissions.",
+    "UNK_CMD_ERR": "§c▪§f Error. Unknown command. Type: /tag help",
+    "HIDE_CMD_ERR": "§c▪§f Error. Usage: /tag hide <player>",
+    "SHOW_CMD_ERR": "§c▪§f Error. Usage: /tag show <player>",
+    "HELP_MESSAGE": [
+      "",
+      "§f§l[§b▰▰▰▰▰§f§l]§f nTags v1.0 by neros2k §f§l[§b▰▰▰▰▰§f§l]",
+      "§b►§f Command list:",
+      "§b▪§f /tag §7(help)§f §b-§f Main command",
+      "§b▪§f /tag reload §b-§f Reload nTags",
+      "§b▪§f /tag show §7<player> §b-§f Show nametag",
+      "§b▪§f /tag hide §7<player> §b-§f Hide nametag",
+      "§b►§f Command aliases: §7[ntags, nt]",
+      "§f§l[§b▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰§f§l]",
+      ""
+    ]
+  }
+}

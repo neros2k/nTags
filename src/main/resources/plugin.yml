@@ -1,0 +1,22 @@
+name: nTags
+version: '${project.version}'
+main: neros2k.ntags.nTags
+api-version: 1.17
+load: POSTWORLD
+authors: [ neros2k ]
+website: github.com/neros2k
+commands:
+  tag:
+    description: The main command.
+    aliases: [ntags, nt]
+    usage: /tag <hide, show, reload> <player?>
+permissions:
+  ntags.admin:
+    default: op
+  ntags.command.*:
+    children:
+      ntags.reload: true
+      ntags.hide: true
+      ntags.show: true
+softdepend:
+  - PlaceholderAPI
