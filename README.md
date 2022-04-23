@@ -1,5 +1,7 @@
 ![Java](https://img.shields.io/badge/Java%20version-16-orange)
 ![Open issues](https://img.shields.io/github/issues-raw/neros2k/nTags)
+> ---
+[![Dropbox](https://img.shields.io/badge/Dropbox-v1.0-blue)](https://www.dropbox.com/sh/0fkk7gimpp39nl4/AADIhpj9NI6kuJHdB3JIEWK9a?dl=0)
 
 # Описание
 **nTags** - плагин, позволяющий управлять именными тегами игроков на сервере. Имеет большое количество функционала, и активно развивается. Подойдет для любого РП-сервера, мини-игры, и пр. Кроме того, в проектировании плагина использовался паттерн ООП - **PIDOR** (presenter-interactor-decorator-object-repository), что делает его еще круче!
