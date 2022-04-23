@@ -4,7 +4,7 @@
   "ENABLE_AB_MSG": true,
   "SEND_AB_FROM_DSPLD_PLYR": false,
   "MESSAGES": {
-    "AB_MSG": "",
+    "AB_MSG": "§f%name%",
     "RELOAD_CMD": "§f§l[§bɴᴛᴀɢs§f§l]§f Plugin was successfully reloaded.",
     "HIDE_CMD": "§a▪§f %player% tag was successfully hidden.",
     "SHOW_CMD": "§a▪§f %player% tag was successfully displayed.",
