@@ -28,7 +28,7 @@ public final class CommandPresenter extends AbstractPresenter<TagInteractor> imp
             return true;
         }
         if(ARGS[0].equals("reload")) {
-            if(notEnoughPermission("ntags.reload", SENDER)) {
+            if(notEnoughPermission("ntags.command.reload", SENDER)) {
                 SENDER.sendMessage(CONFIG_MODEL.MESSAGES.PERM_ERR);
                 return true;
             }
@@ -37,7 +37,7 @@ public final class CommandPresenter extends AbstractPresenter<TagInteractor> imp
             return true;
         }
         if(ARGS[0].equals("hide")) {
-            if(notEnoughPermission("ntags.hide", SENDER)) {
+            if(notEnoughPermission("ntags.command.hide", SENDER)) {
                 SENDER.sendMessage(CONFIG_MODEL.MESSAGES.PERM_ERR);
                 return true;
             }
@@ -54,7 +54,7 @@ public final class CommandPresenter extends AbstractPresenter<TagInteractor> imp
             return true;
         }
         if(ARGS[0].equals("show")) {
-            if(notEnoughPermission("ntags.show", SENDER)) {
+            if(notEnoughPermission("ntags.command.show", SENDER)) {
                 SENDER.sendMessage(CONFIG_MODEL.MESSAGES.PERM_ERR);
                 return true;
             }
