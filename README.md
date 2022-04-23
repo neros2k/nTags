@@ -4,6 +4,7 @@
 [![Dropbox](https://img.shields.io/badge/Dropbox-v1.0-blue)](https://www.dropbox.com/sh/0fkk7gimpp39nl4/AADIhpj9NI6kuJHdB3JIEWK9a?dl=0)
 [![SpigotMC](https://img.shields.io/badge/SpigotMC-v1.0-yellow)](https://www.spigotmc.org/resources/ntags-%E2%80%93-powerful-tool-for-management-nametags.101579/)
 [![SourceForge](https://img.shields.io/badge/SourceForge-v1.0-orange)](https://sourceforge.net/projects/ntags/)
+[![Trello](https://img.shields.io/badge/Trello-v1.0-blue)](https://trello.com/c/MRT8SzEn/6-ntags)
 
 # Описание
 **nTags** - плагин, позволяющий управлять именными тегами игроков на сервере. Имеет большое количество функционала, и активно развивается. Подойдет для любого РП-сервера, мини-игры, и пр. Кроме того, в проектировании плагина использовался паттерн ООП - PIDOR (presenter-interactor-decorator-object-repository), что делает его еще круче!
