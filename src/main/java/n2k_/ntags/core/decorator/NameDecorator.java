@@ -1,6 +1,6 @@
-package neros2k.ntags.core.decorator;
-import neros2k.ntags.base.AbstractDecorator;
-import neros2k.ntags.base.object.Line;
+package n2k_.ntags.core.decorator;
+import n2k_.ntags.base.AbstractDecorator;
+import n2k_.ntags.base.object.Line;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 public final class NameDecorator extends AbstractDecorator {

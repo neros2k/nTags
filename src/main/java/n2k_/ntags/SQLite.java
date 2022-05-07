@@ -1,4 +1,5 @@
-package neros2k.ntags;
+package n2k_.ntags;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import java.io.File;
@@ -6,11 +7,11 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public final class SQLite {
-    private final nTags PLUGIN;
+    private final JavaPlugin PLUGIN;
     private final String DATABASE_NAME;
     private final String TABLE_NAME;
     private Connection CONNECTION;
-    public SQLite(nTags PLUGIN, String DATABASE_NAME, String TABLE_NAME) {
+    public SQLite(JavaPlugin PLUGIN, String DATABASE_NAME, String TABLE_NAME) {
         this.PLUGIN = PLUGIN;
         this.DATABASE_NAME = DATABASE_NAME;
         this.TABLE_NAME = TABLE_NAME;
@@ -77,7 +78,7 @@ public final class SQLite {
         catch(SQLException EXCEPTION) {
             LOGGER.log(Level.SEVERE, "Couldn't execute statement: ", EXCEPTION);
         }
-        return this.PLUGIN.getConfigModel().HIDE_TAG_ON_JOIN;
+        return ((nTags) this.PLUGIN).getConfigModel().HIDE_TAGS_ON_JOIN;
     }
     public void saveValue(@NotNull String PLAYER_NAME, boolean VALUE) {
         Logger LOGGER = this.PLUGIN.getLogger();

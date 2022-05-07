@@ -1,6 +1,6 @@
-package neros2k.ntags;
-import neros2k.ntags.base.model.ConfigModel;
-import neros2k.ntags.core.TagInteractor;
+package n2k_.ntags;
+import n2k_.ntags.core.TagInteractor;
+import n2k_.ntags.base.model.ConfigModel;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;

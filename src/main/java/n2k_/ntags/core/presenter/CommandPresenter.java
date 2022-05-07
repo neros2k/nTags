@@ -1,7 +1,8 @@
-package neros2k.ntags.core.presenter;
-import neros2k.ntags.base.AbstractPresenter;
-import neros2k.ntags.base.model.ConfigModel;
-import neros2k.ntags.core.TagInteractor;
+package n2k_.ntags.core.presenter;
+import n2k_.ntags.core.TagInteractor;
+import n2k_.ntags.base.AbstractPresenter;
+import n2k_.ntags.base.model.ConfigModel;
+import n2k_.ntags.nTags;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -9,7 +10,7 @@ import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import java.util.List;
-public final class CommandPresenter extends AbstractPresenter<TagInteractor> implements CommandExecutor {
+public final class CommandPresenter extends AbstractPresenter implements CommandExecutor {
     public CommandPresenter(TagInteractor INTERACTOR) {
         super(INTERACTOR);
     }
@@ -22,23 +23,23 @@ public final class CommandPresenter extends AbstractPresenter<TagInteractor> imp
     }
     @Override
     public boolean onCommand(@NotNull CommandSender SENDER, @NotNull Command COMMAND, @NotNull String STR, @NotNull String @NotNull [] ARGS) {
-        ConfigModel CONFIG_MODEL = this.getInteractor().getPlugin().getConfigModel();
+        ConfigModel CONFIG_MODEL = this.getInteractor().getConfig();
         if(ARGS.length == 0 || ARGS[0].equals("help")) {
-            List.of(CONFIG_MODEL.MESSAGES.HELP_MESSAGE).forEach(SENDER::sendMessage);
+            List.of(CONFIG_MODEL.MESSAGES.HELP_COMMAND).forEach(SENDER::sendMessage);
             return true;
         }
         if(ARGS[0].equals("reload")) {
             if(notEnoughPermission("ntags.command.reload", SENDER)) {
-                SENDER.sendMessage(CONFIG_MODEL.MESSAGES.PERM_ERR);
+                SENDER.sendMessage(CONFIG_MODEL.MESSAGES.PERM_ERROR);
                 return true;
             }
-            this.getInteractor().getPlugin().getJsonConfig().reload();
-            SENDER.sendMessage(CONFIG_MODEL.MESSAGES.RELOAD_CMD);
+            ((nTags) this.getInteractor().getPlugin()).getJsonConfig().reload();
+            SENDER.sendMessage(CONFIG_MODEL.MESSAGES.RELOAD_COMMAND);
             return true;
         }
         if(ARGS[0].equals("hide")) {
             if(notEnoughPermission("ntags.command.hide", SENDER)) {
-                SENDER.sendMessage(CONFIG_MODEL.MESSAGES.PERM_ERR);
+                SENDER.sendMessage(CONFIG_MODEL.MESSAGES.PERM_ERROR);
                 return true;
             }
             if(ARGS.length == 2) {
@@ -46,16 +47,16 @@ public final class CommandPresenter extends AbstractPresenter<TagInteractor> imp
                 if(PLAYER != null) {
                     this.getInteractor().hidePlayerTag(PLAYER.getName(), true, true);
                 } else this.getInteractor().hidePlayerTag(ARGS[1], true, true);
-                SENDER.sendMessage(CONFIG_MODEL.MESSAGES.HIDE_CMD
+                SENDER.sendMessage(CONFIG_MODEL.MESSAGES.HIDE_COMMAND
                         .replace("%player%", ARGS[1]));
                 return true;
             }
-            SENDER.sendMessage(CONFIG_MODEL.MESSAGES.HIDE_CMD_ERR);
+            SENDER.sendMessage(CONFIG_MODEL.MESSAGES.HIDE_COMMAND_ERROR);
             return true;
         }
         if(ARGS[0].equals("show")) {
             if(notEnoughPermission("ntags.command.show", SENDER)) {
-                SENDER.sendMessage(CONFIG_MODEL.MESSAGES.PERM_ERR);
+                SENDER.sendMessage(CONFIG_MODEL.MESSAGES.PERM_ERROR);
                 return true;
             }
             if(ARGS.length == 2) {
@@ -63,14 +64,14 @@ public final class CommandPresenter extends AbstractPresenter<TagInteractor> imp
                 if(PLAYER != null) {
                     this.getInteractor().showPlayerTag(PLAYER.getName(), true, true);
                 } else this.getInteractor().showPlayerTag(ARGS[1], true, true);
-                SENDER.sendMessage(CONFIG_MODEL.MESSAGES.SHOW_CMD
+                SENDER.sendMessage(CONFIG_MODEL.MESSAGES.SHOW_COMMAND
                         .replace("%player%", ARGS[1]));
                 return true;
             }
-            SENDER.sendMessage(CONFIG_MODEL.MESSAGES.SHOW_CMD_ERR);
+            SENDER.sendMessage(CONFIG_MODEL.MESSAGES.SHOW_COMMAND_ERROR);
             return true;
         }
-        SENDER.sendMessage(CONFIG_MODEL.MESSAGES.UNK_CMD_ERR);
+        SENDER.sendMessage(CONFIG_MODEL.MESSAGES.UNKNOWN_COMMAND);
         return true;
     }
     private Player getPlayerByName(String NAME) {

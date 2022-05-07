@@ -1,4 +1,4 @@
-package neros2k.ntags.base.object;
+package n2k_.ntags.base.object;
 public record State(String NAME, boolean HIDE) {
     public String getName() {
         return this.NAME;

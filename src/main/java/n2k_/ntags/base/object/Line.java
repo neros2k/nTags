@@ -1,4 +1,4 @@
-package neros2k.ntags.base.object;
+package n2k_.ntags.base.object;
 import org.bukkit.entity.Player;
 public class Line {
     private final Player PLAYER;

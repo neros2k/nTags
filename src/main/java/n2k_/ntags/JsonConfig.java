@@ -1,4 +1,4 @@
-package neros2k.ntags;
+package n2k_.ntags;
 import com.google.gson.Gson;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;

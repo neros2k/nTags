@@ -1,4 +1,4 @@
-package neros2k.ntags.base;
+package n2k_.ntags.base;
 public interface RepositoryInterface<T, P> {
     void init();
     void setValue(T VALUE);

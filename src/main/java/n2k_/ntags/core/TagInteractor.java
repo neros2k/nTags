@@ -1,29 +1,31 @@
-package neros2k.ntags.core;
-import neros2k.ntags.base.AbstractDecorator;
-import neros2k.ntags.base.InteractorInterface;
-import neros2k.ntags.base.AbstractPresenter;
-import neros2k.ntags.base.model.ConfigModel;
-import neros2k.ntags.base.object.Line;
-import neros2k.ntags.base.object.State;
-import neros2k.ntags.core.decorator.PAPIDecorator;
-import neros2k.ntags.core.decorator.NameDecorator;
-import neros2k.ntags.core.presenter.CommandPresenter;
-import neros2k.ntags.core.presenter.EventPresenter;
-import neros2k.ntags.nTags;
+package n2k_.ntags.core;
+import n2k_.ntags.core.decorator.PAPIDecorator;
+import n2k_.ntags.base.AbstractDecorator;
+import n2k_.ntags.base.InteractorInterface;
+import n2k_.ntags.base.AbstractPresenter;
+import n2k_.ntags.base.model.ConfigModel;
+import n2k_.ntags.base.object.Line;
+import n2k_.ntags.base.object.State;
+import n2k_.ntags.core.decorator.NameDecorator;
+import n2k_.ntags.core.presenter.CommandPresenter;
+import n2k_.ntags.core.presenter.EventPresenter;
+import n2k_.ntags.nTags;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 @SuppressWarnings("ALL")
-public final class TagInteractor implements InteractorInterface<nTags> {
+public final class TagInteractor implements InteractorInterface {
     private static final String TEAM_NAME = "n_hidden_tags";
-    private final nTags PLUGIN;
-    private final ArrayList<AbstractPresenter<?>> PRESENTER_LIST;
+    private final JavaPlugin PLUGIN;
+    private final ArrayList<AbstractPresenter> PRESENTER_LIST;
     private final TagsRepository TAGS_REPOSITORY;
     public TagInteractor(@NotNull nTags PLUGIN) {
         this.PLUGIN = PLUGIN;
@@ -33,7 +35,7 @@ public final class TagInteractor implements InteractorInterface<nTags> {
     @Override
     public void init() {
         this.PRESENTER_LIST.add(new EventPresenter(this));
-        if(this.PLUGIN.getConfigModel().ENABLE_CMDS) this.PRESENTER_LIST.add(new CommandPresenter(this));
+        if(this.getConfig().ENABLE_COMMANDS) this.PRESENTER_LIST.add(new CommandPresenter(this));
         this.PRESENTER_LIST.forEach(AbstractPresenter::init);
         this.TAGS_REPOSITORY.init();
         Scoreboard BOARD = Bukkit.getScoreboardManager().getMainScoreboard();
@@ -41,12 +43,14 @@ public final class TagInteractor implements InteractorInterface<nTags> {
         if(TEAM == null) TEAM = BOARD.registerNewTeam(TagInteractor.TEAM_NAME);
         TEAM.setOption(Team.Option.NAME_TAG_VISIBILITY, Team.OptionStatus.NEVER);
     }
+    @Override
     public void sendStateAB(@NotNull Player PLAYER, Player CLICKED_PLAYER) {
-        ConfigModel CONFIG_MODEL = this.getPlugin().getConfigModel();
-        if(!CONFIG_MODEL.SEND_AB_FROM_DSPLD_PLYR && !this.getState(CLICKED_PLAYER).isHide()) return;
-        AbstractDecorator OBJECT = new PAPIDecorator(new NameDecorator(new Line(CLICKED_PLAYER, CONFIG_MODEL.MESSAGES.AB_MSG)));
+        ConfigModel CONFIG_MODEL = this.getConfig();
+        if(!CONFIG_MODEL.SEND_ACTION_BAR_FROM_DISPLAYED_PLAYERS && !this.getState(CLICKED_PLAYER).isHide()) return;
+        AbstractDecorator OBJECT = new PAPIDecorator(new NameDecorator(new Line(CLICKED_PLAYER, CONFIG_MODEL.MESSAGES.ACTION_BAR)));
         PLAYER.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(OBJECT.getContent()));
     }
+    @Override
     public void loadPlayer(@NotNull Player PLAYER) {
         State STATE = this.getState(PLAYER);
         if(STATE.isHide()) {
@@ -55,11 +59,13 @@ public final class TagInteractor implements InteractorInterface<nTags> {
             this.showPlayerTag(PLAYER.getName(), false, true);
         }
     }
+    @Override
     public void hidePlayerTag(@Nullable String NAME, boolean IN_DATA, boolean IN_GAME) {
         Scoreboard SCOREBOARD = Bukkit.getScoreboardManager().getMainScoreboard();
         if(IN_GAME) SCOREBOARD.getTeam(TagInteractor.TEAM_NAME).addEntry(NAME);
         if(IN_DATA) this.TAGS_REPOSITORY.setValue(new State(NAME, true));
     }
+    @Override
     public void showPlayerTag(@Nullable String NAME, boolean IN_DATA, boolean IN_GAME) {
         Scoreboard SCOREBOARD = Bukkit.getScoreboardManager().getMainScoreboard();
         if(IN_GAME) SCOREBOARD.getTeam(TagInteractor.TEAM_NAME).removeEntry(NAME);
@@ -70,7 +76,11 @@ public final class TagInteractor implements InteractorInterface<nTags> {
         return this.TAGS_REPOSITORY.getValue(PLAYER.getName());
     }
     @Override
-    public nTags getPlugin() {
+    public JavaPlugin getPlugin() {
         return this.PLUGIN;
+    }
+    @Contract(pure = true) @Override
+    public @Nullable ConfigModel getConfig() {
+        return ((nTags) this.PLUGIN).getConfigModel();
     }
 }

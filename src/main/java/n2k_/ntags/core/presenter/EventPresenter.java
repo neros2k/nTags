@@ -1,7 +1,7 @@
-package neros2k.ntags.core.presenter;
-import neros2k.ntags.base.AbstractPresenter;
-import neros2k.ntags.base.model.ConfigModel;
-import neros2k.ntags.core.TagInteractor;
+package n2k_.ntags.core.presenter;
+import n2k_.ntags.core.TagInteractor;
+import n2k_.ntags.base.AbstractPresenter;
+import n2k_.ntags.base.model.ConfigModel;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
-public final class EventPresenter extends AbstractPresenter<TagInteractor> implements Listener {
+public final class EventPresenter extends AbstractPresenter implements Listener {
     public EventPresenter(TagInteractor INTERACTOR) {
         super(INTERACTOR);
     }
@@ -24,8 +24,8 @@ public final class EventPresenter extends AbstractPresenter<TagInteractor> imple
     }
     @EventHandler
     private void onPlayerInteract(@NotNull PlayerInteractAtEntityEvent EVENT) {
-        ConfigModel CONFIG_MODEL = this.getInteractor().getPlugin().getConfigModel();
-        if(EVENT.isCancelled() || !CONFIG_MODEL.ENABLE_AB_MSG || !(EVENT.getRightClicked() instanceof Player)) return;
+        ConfigModel CONFIG_MODEL = this.getInteractor().getConfig();
+        if(EVENT.isCancelled() || !CONFIG_MODEL.ENABLE_ACTION_BAR_MESSAGES || !(EVENT.getRightClicked() instanceof Player)) return;
         super.getInteractor().sendStateAB(EVENT.getPlayer(), (Player) EVENT.getRightClicked());
     }
 }

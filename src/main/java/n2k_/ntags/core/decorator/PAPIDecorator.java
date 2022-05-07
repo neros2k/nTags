@@ -1,7 +1,7 @@
-package neros2k.ntags.core.decorator;
+package n2k_.ntags.core.decorator;
 import me.clip.placeholderapi.PlaceholderAPI;
-import neros2k.ntags.base.AbstractDecorator;
-import neros2k.ntags.base.object.Line;
+import n2k_.ntags.base.AbstractDecorator;
+import n2k_.ntags.base.object.Line;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;

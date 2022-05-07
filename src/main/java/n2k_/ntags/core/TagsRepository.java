@@ -1,7 +1,7 @@
-package neros2k.ntags.core;
-import neros2k.ntags.base.RepositoryInterface;
-import neros2k.ntags.SQLite;
-import neros2k.ntags.base.object.State;
+package n2k_.ntags.core;
+import n2k_.ntags.SQLite;
+import n2k_.ntags.base.RepositoryInterface;
+import n2k_.ntags.base.object.State;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 public final class TagsRepository implements RepositoryInterface<State, String> {
