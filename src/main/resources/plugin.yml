@@ -19,3 +19,5 @@ permissions:
       ntags.command.show: true
 softdepend:
   - PlaceholderAPI
+depend:
+  - JSONConfigAPI

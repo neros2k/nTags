@@ -61,6 +61,14 @@
             <id>placeholderapi</id>
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
+        <repository>
+            <id>JSONConfigAPI-mvn-repo</id>
+            <url>https://raw.github.com/neros2k/JSONConfigAPI/mvn-repo/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
     </repositories>
     <dependencies>
         <dependency>
@@ -80,6 +88,11 @@
             <artifactId>annotations</artifactId>
             <version>23.0.0</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>neros2k.jcapi</groupId>
+            <artifactId>JSONConfigAPI</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 </project>
