@@ -1,8 +1,8 @@
 package n2k_.ntags.core;
 import n2k_.ntags.core.decorator.PAPIDecorator;
-import n2k_.ntags.base.AbstractDecorator;
-import n2k_.ntags.base.InteractorInterface;
-import n2k_.ntags.base.AbstractPresenter;
+import n2k_.ntags.base.ADecorator;
+import n2k_.ntags.base.IInteractor;
+import n2k_.ntags.base.APresenter;
 import n2k_.ntags.base.model.ConfigModel;
 import n2k_.ntags.base.object.Line;
 import n2k_.ntags.base.object.State;
@@ -22,10 +22,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 @SuppressWarnings("ALL")
-public final class TagInteractor implements InteractorInterface {
+public final class TagInteractor implements IInteractor {
     private static final String TEAM_NAME = "n_hidden_tags";
     private final JavaPlugin PLUGIN;
-    private final ArrayList<AbstractPresenter> PRESENTER_LIST;
+    private final ArrayList<APresenter> PRESENTER_LIST;
     private final TagsRepository TAGS_REPOSITORY;
     public TagInteractor(@NotNull nTags PLUGIN) {
         this.PLUGIN = PLUGIN;
@@ -36,7 +36,7 @@ public final class TagInteractor implements InteractorInterface {
     public void init() {
         this.PRESENTER_LIST.add(new EventPresenter(this));
         if(this.getConfig().ENABLE_COMMANDS) this.PRESENTER_LIST.add(new CommandPresenter(this));
-        this.PRESENTER_LIST.forEach(AbstractPresenter::init);
+        this.PRESENTER_LIST.forEach(APresenter::init);
         this.TAGS_REPOSITORY.init();
         Scoreboard BOARD = Bukkit.getScoreboardManager().getMainScoreboard();
         Team TEAM = BOARD.getTeam(TagInteractor.TEAM_NAME);
@@ -47,7 +47,7 @@ public final class TagInteractor implements InteractorInterface {
     public void sendStateAB(@NotNull Player PLAYER, Player CLICKED_PLAYER) {
         ConfigModel CONFIG_MODEL = this.getConfig();
         if(!CONFIG_MODEL.SEND_ACTION_BAR_FROM_DISPLAYED_PLAYERS && !this.getState(CLICKED_PLAYER).isHide()) return;
-        AbstractDecorator OBJECT = new PAPIDecorator(new NameDecorator(new Line(CLICKED_PLAYER, CONFIG_MODEL.MESSAGES.ACTION_BAR)));
+        ADecorator OBJECT = new PAPIDecorator(new NameDecorator(new Line(CLICKED_PLAYER, CONFIG_MODEL.MESSAGES.ACTION_BAR)));
         PLAYER.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(OBJECT.getContent()));
     }
     @Override

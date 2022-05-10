@@ -1,6 +1,6 @@
 package n2k_.ntags.core.presenter;
 import n2k_.ntags.core.TagInteractor;
-import n2k_.ntags.base.AbstractPresenter;
+import n2k_.ntags.base.APresenter;
 import n2k_.ntags.base.model.ConfigModel;
 import n2k_.ntags.nTags;
 import org.bukkit.command.Command;
@@ -10,7 +10,7 @@ import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import java.util.List;
-public final class CommandPresenter extends AbstractPresenter implements CommandExecutor {
+public final class CommandPresenter extends APresenter implements CommandExecutor {
     public CommandPresenter(TagInteractor INTERACTOR) {
         super(INTERACTOR);
     }

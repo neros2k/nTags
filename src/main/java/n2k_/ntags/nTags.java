@@ -1,5 +1,5 @@
 package n2k_.ntags;
-import n2k_.ntags.base.InteractorInterface;
+import n2k_.ntags.base.IInteractor;
 import n2k_.ntags.core.TagInteractor;
 import n2k_.ntags.base.model.ConfigModel;
 import neros2k.jcapi.JCApi;
@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Optional;
 public final class nTags extends JavaPlugin {
-    private final InteractorInterface INTERACTOR;
+    private final IInteractor INTERACTOR;
     private JSONConfig<ConfigModel> JSON_CONFIG;
     public nTags() {
         this.INTERACTOR = new TagInteractor(this);

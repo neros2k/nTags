@@ -1,9 +1,9 @@
 package n2k_.ntags.core.decorator;
-import n2k_.ntags.base.AbstractDecorator;
+import n2k_.ntags.base.ADecorator;
 import n2k_.ntags.base.object.Line;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-public final class NameDecorator extends AbstractDecorator {
+public final class NameDecorator extends ADecorator {
     public NameDecorator(Line OBJECT) {
         super(OBJECT);
     }

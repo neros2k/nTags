@@ -3,7 +3,7 @@ import n2k_.ntags.base.model.ConfigModel;
 import n2k_.ntags.base.object.State;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-public interface InteractorInterface {
+public interface IInteractor {
     void init();
     void sendStateAB(Player PLAYER, Player CLICKED_PLAYER);
     void loadPlayer(Player PLAYER);
