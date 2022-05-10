@@ -1,10 +1,10 @@
 ![Java](https://img.shields.io/badge/Java%20version-16-orange)
 ![Open issues](https://img.shields.io/github/issues-raw/neros2k/nTags)
 ---
-[![Dropbox](https://img.shields.io/badge/Dropbox-v1.0-blue)](https://www.dropbox.com/sh/0fkk7gimpp39nl4/AADIhpj9NI6kuJHdB3JIEWK9a?dl=0)
-[![SpigotMC](https://img.shields.io/badge/SpigotMC-v1.0-yellow)](https://www.spigotmc.org/resources/ntags-%E2%80%93-powerful-tool-for-management-nametags.101579/)
+[![Dropbox](https://img.shields.io/badge/Dropbox-v1.0.1-blue)](https://www.dropbox.com/sh/0fkk7gimpp39nl4/AADIhpj9NI6kuJHdB3JIEWK9a?dl=0)
+[![SpigotMC](https://img.shields.io/badge/SpigotMC-v1.0.1-yellow)](https://www.spigotmc.org/resources/ntags-%E2%80%93-powerful-tool-for-management-nametags.101579/)
 [![SourceForge](https://img.shields.io/badge/SourceForge-v1.0-orange)](https://sourceforge.net/projects/ntags/)
-[![Trello](https://img.shields.io/badge/Trello-v1.0-blue)](https://trello.com/c/MRT8SzEn/6-ntags)
+[![Trello](https://img.shields.io/badge/Trello-v1.0.1-blue)](https://trello.com/c/MRT8SzEn/6-ntags)
 [![CurseForge](https://img.shields.io/badge/CurseForge-v1.0-green)](https://www.curseforge.com/minecraft/bukkit-plugins/ntags)
 
 # Описание
