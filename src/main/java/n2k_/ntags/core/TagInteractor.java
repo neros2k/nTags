@@ -38,10 +38,6 @@ public final class TagInteractor implements IInteractor {
         if(this.getConfig().ENABLE_COMMANDS) this.PRESENTER_LIST.add(new CommandPresenter(this));
         this.PRESENTER_LIST.forEach(APresenter::init);
         this.TAGS_REPOSITORY.init();
-        Scoreboard BOARD = Bukkit.getScoreboardManager().getMainScoreboard();
-        Team TEAM = BOARD.getTeam(TagInteractor.TEAM_NAME);
-        if(TEAM == null) TEAM = BOARD.registerNewTeam(TagInteractor.TEAM_NAME);
-        TEAM.setOption(Team.Option.NAME_TAG_VISIBILITY, Team.OptionStatus.NEVER);
     }
     @Override
     public void sendStateAB(@NotNull Player PLAYER, Player CLICKED_PLAYER) {
@@ -52,6 +48,7 @@ public final class TagInteractor implements IInteractor {
     }
     @Override
     public void loadPlayer(@NotNull Player PLAYER) {
+        this.newTeam(PLAYER.getName());
         State STATE = this.getState(PLAYER);
         if(STATE.isHide()) {
             this.hidePlayerTag(PLAYER.getName(), false, true);
@@ -62,13 +59,13 @@ public final class TagInteractor implements IInteractor {
     @Override
     public void hidePlayerTag(@Nullable String NAME, boolean IN_DATA, boolean IN_GAME) {
         Scoreboard SCOREBOARD = Bukkit.getScoreboardManager().getMainScoreboard();
-        if(IN_GAME) SCOREBOARD.getTeam(TagInteractor.TEAM_NAME).addEntry(NAME);
+        if(IN_GAME) SCOREBOARD.getTeam(TagInteractor.TEAM_NAME+"_"+NAME).addEntry(NAME);
         if(IN_DATA) this.TAGS_REPOSITORY.setValue(new State(NAME, true));
     }
     @Override
     public void showPlayerTag(@Nullable String NAME, boolean IN_DATA, boolean IN_GAME) {
         Scoreboard SCOREBOARD = Bukkit.getScoreboardManager().getMainScoreboard();
-        if(IN_GAME) SCOREBOARD.getTeam(TagInteractor.TEAM_NAME).removeEntry(NAME);
+        if(IN_GAME) SCOREBOARD.getTeam(TagInteractor.TEAM_NAME+"_"+NAME).removeEntry(NAME);
         if(IN_DATA) this.TAGS_REPOSITORY.setValue(new State(NAME, false));
     }
     @NotNull
@@ -79,8 +76,16 @@ public final class TagInteractor implements IInteractor {
     public JavaPlugin getPlugin() {
         return this.PLUGIN;
     }
-    @Contract(pure = true) @Override
-    public @Nullable ConfigModel getConfig() {
+    @Contract(pure = true) @Override @Nullable
+    public ConfigModel getConfig() {
         return ((nTags) this.PLUGIN).getConfigModel();
+    }
+    @NotNull
+    private Team newTeam(String NAME) {
+        Scoreboard BOARD = Bukkit.getScoreboardManager().getMainScoreboard();
+        Team TEAM = BOARD.getTeam(TagInteractor.TEAM_NAME+"_"+NAME);
+        if(TEAM == null) TEAM = BOARD.registerNewTeam(TagInteractor.TEAM_NAME+"_"+NAME);
+        TEAM.setOption(Team.Option.NAME_TAG_VISIBILITY, Team.OptionStatus.NEVER);
+        return TEAM;
     }
 }
