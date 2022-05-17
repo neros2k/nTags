@@ -24,10 +24,12 @@ import java.util.ArrayList;
 @SuppressWarnings("ALL")
 public final class TagInteractor implements IInteractor {
     private static final String TEAM_NAME = "n_hidden_tags";
+    private final Team TEAM;
     private final JavaPlugin PLUGIN;
     private final ArrayList<APresenter> PRESENTER_LIST;
     private final TagsRepository TAGS_REPOSITORY;
     public TagInteractor(@NotNull nTags PLUGIN) {
+        this.TEAM = this.newTeam();
         this.PLUGIN = PLUGIN;
         this.PRESENTER_LIST = new ArrayList<>();
         this.TAGS_REPOSITORY = new TagsRepository(this);
@@ -48,7 +50,6 @@ public final class TagInteractor implements IInteractor {
     }
     @Override
     public void loadPlayer(@NotNull Player PLAYER) {
-        this.newTeam(PLAYER.getName());
         State STATE = this.getState(PLAYER);
         if(STATE.isHide()) {
             this.hidePlayerTag(PLAYER.getName(), false, true);
@@ -59,13 +60,13 @@ public final class TagInteractor implements IInteractor {
     @Override
     public void hidePlayerTag(@Nullable String NAME, boolean IN_DATA, boolean IN_GAME) {
         Scoreboard SCOREBOARD = Bukkit.getScoreboardManager().getMainScoreboard();
-        if(IN_GAME) SCOREBOARD.getTeam(TagInteractor.TEAM_NAME+"_"+NAME).addEntry(NAME);
+        if(IN_GAME) SCOREBOARD.getTeam(TagInteractor.TEAM_NAME).addEntry(NAME);
         if(IN_DATA) this.TAGS_REPOSITORY.setValue(new State(NAME, true));
     }
     @Override
     public void showPlayerTag(@Nullable String NAME, boolean IN_DATA, boolean IN_GAME) {
         Scoreboard SCOREBOARD = Bukkit.getScoreboardManager().getMainScoreboard();
-        if(IN_GAME) SCOREBOARD.getTeam(TagInteractor.TEAM_NAME+"_"+NAME).removeEntry(NAME);
+        if(IN_GAME) SCOREBOARD.getTeam(TagInteractor.TEAM_NAME).removeEntry(NAME);
         if(IN_DATA) this.TAGS_REPOSITORY.setValue(new State(NAME, false));
     }
     @NotNull
@@ -81,11 +82,12 @@ public final class TagInteractor implements IInteractor {
         return ((nTags) this.PLUGIN).getConfigModel();
     }
     @NotNull
-    private Team newTeam(String NAME) {
+    private static Team newTeam() {
         Scoreboard BOARD = Bukkit.getScoreboardManager().getMainScoreboard();
-        Team TEAM = BOARD.getTeam(TagInteractor.TEAM_NAME+"_"+NAME);
-        if(TEAM == null) TEAM = BOARD.registerNewTeam(TagInteractor.TEAM_NAME+"_"+NAME);
+        Team TEAM = BOARD.getTeam(TagInteractor.TEAM_NAME);
+        if(TEAM == null) TEAM = BOARD.registerNewTeam(TagInteractor.TEAM_NAME);
         TEAM.setOption(Team.Option.NAME_TAG_VISIBILITY, Team.OptionStatus.NEVER);
+        TEAM.setCanSeeFriendlyInvisibles(false);
         return TEAM;
     }
 }
