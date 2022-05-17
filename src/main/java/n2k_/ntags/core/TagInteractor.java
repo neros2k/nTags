@@ -24,18 +24,18 @@ import java.util.ArrayList;
 @SuppressWarnings("ALL")
 public final class TagInteractor implements IInteractor {
     private static final String TEAM_NAME = "n_hidden_tags";
-    private final Team TEAM;
     private final JavaPlugin PLUGIN;
     private final ArrayList<APresenter> PRESENTER_LIST;
     private final TagsRepository TAGS_REPOSITORY;
+    private Team TEAM;
     public TagInteractor(@NotNull nTags PLUGIN) {
-        this.TEAM = this.newTeam();
         this.PLUGIN = PLUGIN;
         this.PRESENTER_LIST = new ArrayList<>();
         this.TAGS_REPOSITORY = new TagsRepository(this);
     }
     @Override
     public void init() {
+        this.TEAM = this.newTeam();
         this.PRESENTER_LIST.add(new EventPresenter(this));
         if(this.getConfig().ENABLE_COMMANDS) this.PRESENTER_LIST.add(new CommandPresenter(this));
         this.PRESENTER_LIST.forEach(APresenter::init);
