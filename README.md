@@ -3,7 +3,6 @@
 ---
 [![Dropbox](https://img.shields.io/badge/nTags-Dropbox-blue)](https://www.dropbox.com/sh/0fkk7gimpp39nl4/AADIhpj9NI6kuJHdB3JIEWK9a?dl=0)
 [![SpigotMC](https://img.shields.io/badge/nTags-SpigotMC-yellow)](https://www.spigotmc.org/resources/ntags-%E2%80%93-powerful-tool-for-management-nametags.101579/)
-[![SourceForge](https://img.shields.io/badge/nTags-SourceForge-orange)](https://sourceforge.net/projects/ntags/)
 [![Trello](https://img.shields.io/badge/nTags-Trello-blue)](https://trello.com/c/MRT8SzEn/6-ntags)
 [![CurseForge](https://img.shields.io/badge/nTags-CurseForge-green)](https://www.curseforge.com/minecraft/bukkit-plugins/ntags)
 
